@@ -15,8 +15,8 @@ resources:
       include:
        - master
 
+
 pool:
-  name: default
   vmImage: ubuntu-latest
 
 steps:
