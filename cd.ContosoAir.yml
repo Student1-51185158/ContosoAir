@@ -27,6 +27,7 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     targetPath: '$(Pipeline.Workspace)'
+
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
@@ -34,12 +35,13 @@ steps:
     subscriptionId: '7128464d-92ab-4703-8bd3-0749e77ca9f7'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'rg-lod'
-    location: 'Spain Central'
+    location: 'East US 2'
     templateLocation: 'Linked artifact'
     csmFile: '$(Pipeline.Workspace)/drop/Templates/azuredeploy.json'
     csmParametersFile: '$(Pipeline.Workspace)/drop/Templates/azuredeploy.parameters.json'
     overrideParameters: '-p_environment $(web_environment) -p_site_prefix $(web_prefix) -p_site_web_name $(web_site)'
     deploymentMode: 'Incremental'
+
 - task: AzureRmWebAppDeployment@5
   inputs:
     ConnectionType: 'AzureRM'
